@@ -1,103 +1,73 @@
-# Trabalho 1: Avaliação de uma expressão aritmética
+# Trabalho 2: Implementando BFS com uma Fila
 
-O objetivo deste trabalho é implementar um programa em C que lê uma string
-que contenha uma expressão aritmética na notação infixa, converta para a notação
-posfixa e avalie o seu resultado, ou seja, calcule o valor esperado para a expressão. Os
-algoritmos para a conversão entre as notações bem como para a avaliação da expressão
-utilizam uma pilha.
-
-Numa expressão em notação infixa, operadores são separados pelos respectivos
-operandos, e a mudança na ordem de precedência de operadores pode ser feita mediante
-o uso de parênteses. Considere os exemplos a seguir:
-
-![image](https://user-images.githubusercontent.com/50593898/231619109-83290100-fc66-4cbd-a379-035b15302eba.png)
-
-Os poloneses desenvolveram métodos de notação que não necessitam de uso de
-parênteses para definir uma outra ordem de avaliação das operações nas expressões: a
-notação prefixa e a notação posfixa.
-
-Numa expressão em notação prefixa, o operadores antecedem os seus
-operandos, conforme mostrado a seguir:
-
-![image](https://user-images.githubusercontent.com/50593898/231619166-e0f5f3fe-81ff-425d-a0f1-810467763396.png)
-
-Já numa expressão em notação posfixa, os operadores sucedem seus respectivos
-operandos, conforme segue:
-
-![image](https://user-images.githubusercontent.com/50593898/231619203-77a11635-61dc-46f2-a8ad-dd2f6c26eac4.png)
+Grafos são estruturas matemáticas utilizadas para modelar problemas em
+diversas áreas. Na Ciência da Computação, são aplicados em diversos problemas nas
+áreas de redes de computadores, mídias sociais, organização de informação, modelagem
+de circuitos, entre outras aplicações.
 
 
-A notação posfixa permite uma implementação mais simples para o cálculo das
-operações da expressão. Portanto, o trabalho compreente a implementação de dois
-algoritmos, cada um utilizando uma pilha como estrutura auxiliar:
+Grafos são definidos na forma G(V, A), onde V é um conjunto não vazio de
+vértices (ou nós) e A é um conjunto de arestas. Uma aresta representa a conexão entre
+dois vértices. A figura a seguir apresenta um exemplo de grafo com 8 vértices.
 
-#### 1) Conversão da string de entrada da notação infixa para a notação posfixa;
-
-#### 2) Avaliação da expressão na notação posfixa, mostrando na tela o resultado calculado.
+![image](https://user-images.githubusercontent.com/50593898/234118686-d5803c8b-73e4-4abd-aa52-329fb43127fd.png)
 
 
-Observação: para simplificar o processamento, os algoritmos propostos a seguir
-consideram que os valores e operações estão no domínio dos inteiros, os números
-possuem somente um dígito, e não é permitido espaços em branco. Todavia, é possível
-adaptar estes algoritmos para eliminar tais restrições.
-
-## 1) Conversão entre Infixo e Posfixo
-Variáveis utilizadas:
-<p/> - Entrada: string E (notação infixa);
-<p/> - Saída: string S (notação posfixa);
-<p/> - Uma pilha é usada para empilhar os operadores e o '('. Os operandos são
-copiados diretamente de E para S;
-<p/> - Caracteres c e x;
-<p/> - Booleano (inteiro em C padrão) para guardar condição de erro na entrada.
+O objetivo deste trabalho é implementar o algoritmo BFS (Breadth-first Search)
+ou Busca em Largura em um grafo. Ele se inicia em algum vértice arbitrário do grafo e
+explora todos os vértices vizinhos (no mesmo nível), antes de se mover para os vértices
+no próximo nível de profundidade. Para isso, a implementação desse algoritmo utiliza
+uma fila.
 
 
-## Pseudocódigo:
-
-![image](https://user-images.githubusercontent.com/50593898/231619380-596671c6-e529-4683-8713-2937ede0932d.png)
-![image](https://user-images.githubusercontent.com/50593898/231619403-04e5858f-97b6-4e9d-b306-200e74c24fd0.png)
-
-
-Observação: na linha 27, a função precendecia() é invocada. Ela serve para retornar
-o nível de precedência entre operadores, de modo que o laço de repetição desempilhe os
-operadores de maior precedência e os coloque na string de saída antes do operador lido
-na entrada. A função recebe um char como parâmetro e retorna um int, conforme o
-seguinte padrão:
-
-<p/> - Retorna 0, se o caractere for '(' // Ver nota de rodapé -> 1
-<p/> - Retorna 1, se o caractere for '+' ou '-';
-<p/> - Retorna 2, se o caractere for '*' ou '/';
-
-## 2) Avaliação de expressões em notação posfixa
-
-Variáveis utilizadas:
-<p/> - Entrada: string representando uma expressão em notação posfixa;
-<p/> - Saída: valor inteiro, resultante da avaliação da expressão;
-<p/> - Uma pilha é usada para empilhar os operandos (inteiros);
-<p/> - Variáveis inteiras auxiliares.
-
-## Pseudocódigo:
-
-![image](https://user-images.githubusercontent.com/50593898/231620655-24301af9-81da-4add-b8bb-ea87254fc3ee.png)
-
-Ao final do algoritmo, a pilha guardará o resultado total da avaliação da
-expressão.
-
-### Observações sobre a implementação
-<p/> É possivel (e até recomendável) construir funções auxiliares para algumas etapas
-dos processamentos. Por exemplo, no 2º algoritmo, uma função útil seria para a
-verificação se um caractere é dígito; outra poderia ser usada para a realização do cálculo
-com base no tipo de operador e os valores dos operandos.
+O objetivo do algoritmo neste trabalho é implementar a busca no grafo, dados o
+vértice inicial A e o vértice final B. O algoritmo começa em A e faz a busca em largura
+até encontrar B. Uma aplicação desse tipo de algoritmo é que ele permite encontrar o
+menor caminho entre A e B, em termos de número de arestas percorridas. Nesse
+sentido, após a aplicação da busca, a saída deve ser a sequência de vértices visitados
+entre A e B.
 
 
-<p/> A conversão de char para int em linguagem C é bem simples, bastando subtrair
-48 do valor (código ASCII) do caractere.
+## Implementação
 
 
-<p/> A pilha de inteiros pode ser usada em ambos os algoritmos, visto que um char
-pode ser armazenado na pilha de inteiros (conforme mostrado em aula).
+Um grafo pode ser representado por uma matriz de adjacência, na qual cada
+linha representa um vértice e cada vértice adjacente a ele (coluna) possui valor 1, ou 0
+para os que não são adjacentes (adjacente aqui signica estar conectado). Por exemplo,
+considere o grafo a seguir e sua respectiva matriz de adjacência:
 
 
-#### Critérios de avaliação
-<p/> - Execução correta e alinhamento com o que foi solicitado neste enunciado;
-<p/> - Uso apropriado das funções dos tipos abstratos de dados (biblioteca de pilha).
-Respeite o encapsulamento!
+![image](https://user-images.githubusercontent.com/50593898/234118816-7f9a111f-5569-4b25-aa72-e803c91898b7.png)
+
+
+Repare que, para o usuário, os vértices são numerados a partir de 1, enquanto
+que na linguagem C, os índices na matriz começam em 0.
+As seguintes estruturas são necessárias para o algorirmo:
+1. Matriz de adjacência: alocada dinamicamante, conforme entrada do usuário;
+2. Vetor de status dos vértices: também alocado dinamicamente; indica se cada vértice
+foi visitado (1), ou se ainda não foi (0);
+3. Vetor com o antecessor de cada vértice: semelhante ao vetor de status, mas serve
+para registrar qual é o antecessor de cada vértice visitado. Serve para determinar o
+caminho entre A e B;
+4. Fila de inteiros: bilioteca de filas (vetor dinâmico);
+5. Pilha de inteiros: bilioteca de pilhas (vetor dinâmico), usada para mostrar o caminho
+percorrido (após a busca, é preciso fazer o percurso na ordem invertida).
+
+### O algoritmo é implementado conforme o seguinte pseudocódigo:
+
+![image](https://user-images.githubusercontent.com/50593898/234118957-32ef4720-1506-4d33-a840-3e94ee3386c5.png)
+![image](https://user-images.githubusercontent.com/50593898/234119012-b2d8e64f-4310-40c9-b598-629de05c05d3.png)
+
+
+
+## Entrada
+A primeira linha da entrada contém um inteiro N, que representa o número de
+vértices do grafo. A matriz de adjacência terá, portanto, dimensão N. Em seguida, são
+lidas cada uma das N linhas da matriz de adjacência. Finalmente, temos como entrada o
+vértices A (inicial) e B (final).
+
+## Saída
+A lista de vértices visitados, um em cada linha
+
+
+![image](https://user-images.githubusercontent.com/50593898/234119133-2ccac135-3dd5-4a32-8b5f-71f0acfbc73e.png)
