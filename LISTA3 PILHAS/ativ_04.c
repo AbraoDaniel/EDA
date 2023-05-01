@@ -1,3 +1,11 @@
+/*
+Uma palavra é dita palíndrome se a sequência de letras que a forma é a mesma, seja ela
+lida da esquerda para a direita ou vice-versa. Exemplos: arara, rairar, hanah. Escreva
+uma função (definida no mesmo arquivo do programa principal) que indique se uma dada
+string é ou não palíndrome. Para isso, é preciso inverter a string empilhando todos os seus
+caracteres em uma pilha e, em seguida, desempilhando-os numa nova string. 
+*/
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
