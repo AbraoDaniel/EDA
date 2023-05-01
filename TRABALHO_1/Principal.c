@@ -33,7 +33,6 @@ int main()
     printf("Nosso Resultado final é: '%d'\n", solu);
     }
    
-
     return 0;
 }
 
