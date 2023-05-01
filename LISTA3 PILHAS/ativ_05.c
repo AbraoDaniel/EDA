@@ -13,7 +13,7 @@ exemplo, deve produzir “UMA MENSAGEM SECRETA”.
 void inverte_palavras( char *s );
 
 int main(int argc, char *argv[]) {
-	char str[] = "   Alguma  coisa teste";
+	char str[] = "AMU MEGASNEM ATERCES";
 	
 	inverte_palavras( str );
 	
