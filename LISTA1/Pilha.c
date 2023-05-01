@@ -19,7 +19,7 @@ int pilha_cheia( Pilha p ){
 int empilha( Pilha *p, int info ){
 	if( pilha_cheia( *p ) )
 		return ERRO_PILHA_CHEIA;
-	
+	   
 	p->topo++;
 	p->dados[p->topo] = info;
 	return 1; // Sucesso

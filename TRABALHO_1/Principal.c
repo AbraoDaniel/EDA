@@ -6,6 +6,7 @@
 char entrada[100];
 char saida[100];
 Pilha p;
+int deu_erro = 0;
 
 void posfixada();
 void print_saida();
@@ -39,7 +40,7 @@ int main()
 void posfixada()
 {
     int j = 0;
-    int aux, deu_erro = 0;
+    int aux;
     char caractere_atual;
 
     for (int i = 0; i < strlen(entrada); i++)
