@@ -23,10 +23,15 @@ int main()
     inicializa_pilha(&p, strlen(entrada));
 
     posfixada();
+    if(deu_erro > 0){
+        printf("Fim! \n");
+    } else{
     printf("Nossa equação posfixada é essa: ");
     print_saida();
     int solu = solucao();
     printf("Nosso Resultado final é: '%d'\n", solu);
+    }
+   
 
     return 0;
 }
