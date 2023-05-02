@@ -1,3 +1,9 @@
+/*
+Faça um programa que verifique se uma expressão aritmética contém os parênteses
+organizados aos pares (utilizando apenas as operações da pilha). O programa lê uma
+string, por exemplo "((2 + 4) * 6) / 3"
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
