@@ -32,10 +32,12 @@ int remover( Fila *p, int *info ){
 	if( fila_vazia( *p ) )
 		return ERRO_FILA_VAZIA;
 	
-	*info = p->dados[p->inicio];
-	p->inicio = ( p->inicio + 1 ) % p->capacidade;
-	p->n--;
-	return 1; // Sucesso.
+    *info = p->dados[0];
+    for (int i = 0; i < p->n; i++) {
+        p->dados[i] = p->dados[i+1];
+    }
+    p->n--;
+    return 1;
 }
 
 void mostra_fila( Fila f ){

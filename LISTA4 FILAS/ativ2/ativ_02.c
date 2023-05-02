@@ -30,19 +30,7 @@ int main(){
 
     printf("REMOVENDO VALOR DA FILA!\n\n");
     remover(&f, &aux);
-
-
-    for(int i= 0; !fila_vazia(f); i++){
-        remover(&f, &aux);
-        fila[i] = aux;
-    }
-
-    for(int i=0; fila[i] != 0; i++){
-        inserir(&f, fila[i]);
-    }
     mostra_fila(f);
-
-
 
     return 1;
 }
