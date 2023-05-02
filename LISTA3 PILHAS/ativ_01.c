@@ -30,7 +30,7 @@ int main(){
     while(!pilha_vazia(p)){
         int temp;
         desempilha(&p, &temp);
-        printf("%d \n", temp);
+        printf("%d", temp);
     }
 
     return 1;
