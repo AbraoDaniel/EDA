@@ -19,7 +19,6 @@ int main(){
     printf("Qual o tamanho da lista? ");
     int x, aux;
     scanf("%d", &x);
-    char fila[x];
     inicializa_fila(&f, x);
 
     for(int i=0; i < x; i++){
