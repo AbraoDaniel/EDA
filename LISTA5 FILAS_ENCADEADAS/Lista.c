@@ -8,11 +8,11 @@
 Elemento *aloca_elemento( void *info, int tam ) {
 	Elemento *p = malloc( sizeof(Elemento) );
 	if( p == NULL )
-		return NULL; // Erro, falta de memória!
+		return NULL; // Erro, falta de memï¿½ria!
 	p->info = malloc( tam );
 	if( p->info == NULL ){
 		free(p);
-		return NULL; // Erro, falta de memória!
+		return NULL; // Erro, falta de memï¿½ria!
 	}
 	memcpy(p->info, info, tam);
 	return p; // Sucesso!
@@ -34,7 +34,7 @@ int lista_vazia ( Lista l ){
 int insere_inicio( Lista *p, void *info ){
 	Elemento *novo = aloca_elemento( info, p->tamInfo );
 	if( novo == NULL )
-		return 0; // Erro, falta de memória!
+		return 0; // Erro, falta de memï¿½ria!
 
 	novo->proximo = p->cabeca;
 	p->cabeca = novo;
@@ -62,10 +62,10 @@ void mostra_lista( Lista l, void (*mostra)(void *) ){
 	else{
 		printf("Dados da lista (%d elementos):\n", l.qtd );
 		Elemento *p = l.cabeca;
-		int cont = 0; // cont é o índice do elemento dentro da lista.
+		int cont = 0; // cont ï¿½ o ï¿½ndice do elemento dentro da lista.
 		while( p != NULL ){
 			printf("[%d] ", cont);
-			mostra( p->info ); // Invocação por callback
+			mostra( p->info ); // Invocaï¿½ï¿½o por callback
 			p = p->proximo;
 			cont++;
 		}

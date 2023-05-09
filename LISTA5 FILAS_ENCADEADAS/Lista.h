@@ -7,7 +7,7 @@ typedef struct ele {
 	struct ele *proximo;
 } Elemento;
 
-// Cabeçalho de lista
+// Cabeï¿½alho de lista
 typedef struct {
 	Elemento *cabeca;
 	int tamInfo, qtd;
