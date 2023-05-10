@@ -10,7 +10,7 @@ int main(int argc, char *argv[]) {
 	
 	inicializa_lista( &l1, sizeof(int) );
 	
-	int n, i;
+	int n, i, aux;
 	scanf("%d", &n);
 	
 	srand( time(0) );
@@ -19,7 +19,15 @@ int main(int argc, char *argv[]) {
 		insere_inicio( &l1, &x );
 	}
 	mostra_lista( l1, mostra_int );
+	// remove_fim(&l1, &aux);
 	
+	//int x = rand();
+	//insere_fim(&l1, &x);
+	
+	
+	// limpa_lista(&l1);
+	conta_elementos(l1);
+	//mostra_lista( l1, mostra_int );
 	return 0;
 }
 

@@ -21,4 +21,5 @@ int remove_inicio( Lista *p, void *info );
 int remove_fim(Lista *p, void *info);
 void mostra_lista( Lista l, void (*mostra)(void *) );
 void limpa_lista(Lista *p);
+int conta_elementos(Lista p);
 

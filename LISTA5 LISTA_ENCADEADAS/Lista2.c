@@ -64,7 +64,8 @@ void mostra_lista( Lista l, void (*mostra)(void *) ){
 		printf("Dados da lista (%d elementos):\n", l.qtd );
 		Elemento *p = l.cabeca;
 		int cont = 0; // cont � o �ndice do elemento dentro da lista.
-		while( p != NULL ){
+		while( p != NULL )
+		for(int i = 1; i < (l.qtd); i++ ){
 			printf("[%d] ", cont);
 			mostra( p->info ); // Invoca��o por callback
 			p = p->proximo;
@@ -80,16 +81,20 @@ int conta_elementos(Lista p){
 		printf("Lista vazia!\n");
 	int cont = 0;
 	Elemento *aux = p.cabeca;
-	while(aux!=NULL){
+	// while(aux!=NULL) TROCANDO
+	for(int i = 1; i < (p.qtd); i++ ){
 		cont++;
 		aux = aux->proximo;
 	}
+	printf("Quantidade de elementos: %d\n", cont+1);
 	return cont;
 }
 
+
 void limpa_lista(Lista *p){ // desaloca memoria
 	Elemento *aux = p->cabeca;
-	while(aux!=NULL){
+	//while(aux!=NULL) TROCANDO
+	for(int i = 1; i < (p->qtd); i++ ){
 		Elemento *prox = aux->proximo; 
 		free(aux->info);
 		free(aux);
@@ -105,7 +110,8 @@ int insere_fim(Lista *p, void *info){
 
 	Elemento *aux = p->cabeca; // percorre a lista!
 
-	while(aux->proximo != NULL){ // vai até o final da lista
+	// while(aux->proximo != NULL) trocando
+	for(int i = 1; i < (p->qtd); i++ ){ // vai até o final da lista
 		aux = aux->proximo;
 	}
 	
@@ -123,14 +129,18 @@ int remove_fim(Lista *p, void *info){
 	if(lista_vazia(*p)){
 		return ERRO_LISTA_VAZIA;
 	}
-
+	
 	if(p->qtd == 1) // se só tem 1 elemento na lista!
 		return remove_inicio(p, info);
 
 	Elemento *aux = p->cabeca; // percorre a lista!
-
-	while(aux->proximo->proximo != NULL)
+	
+	// while(aux->proximo->proximo != NULL) trocando!
+	for(int i = 1; i < (p->qtd - 1); i++ ){
 		aux = aux -> proximo;
+	}
+		
+		
 
 	Elemento *ultimo = aux->proximo;
 	memcpy(info, ultimo->info, p->tamInfo); // destinoi, origem, num de bites		
