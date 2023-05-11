@@ -153,46 +153,71 @@ int remove_fim(Lista *p, void *info){
 }
 
 
-int insere( Lista *p, int pos, void *info ){
-	if (pos < 0 || pos > p->qtd){
-		return  1; // ERRO_POS_INVALIDA;
-	}
-	if(pos == 0){
-		return insere_inicio(p, info);
-	}
-
+int insere_pos( Lista *p, void *info , int pos ){
+	if( pos < 0 || pos > p->qtd )
+		return 0;// ERRO_POS_INVALIDA;
+	if( pos == 0 )
+		return insere_inicio( p, info );
 	Elemento *aux = p->cabeca;
-	
-	for(int i = 1; i < pos; i++ ){ // vai até o final da lista
-		
-		
-	}
-	
-	p->qtd++;
-	Elemento *novo = aloca_elemento( info, p->tamInfo );
+	int cont;
+	for( cont = 0 ; cont < pos-1 ; cont++ )
+		aux = aux->proximo; // Vai até elemento em pos-1
+		Elemento *novo = aloca_elemento( info, p->tamInfo );
 	if( novo == NULL )
-		return 0; // Erro, falta de mem�ria!
-
+		return 0; // Erro, falta de memória!
+	
 	novo->proximo = aux->proximo;
-	novo->proximo = p->cabeca;
 	aux->proximo = novo;
 	p->qtd++;
 	return 1; // Sucesso!
 }
 
 
-int remove( Lista *p, void *info, int pos  ){
+int remove_pos( Lista *p, void *info , int pos ){
 	if( lista_vazia( *p ) )
 		return ERRO_LISTA_VAZIA;
-
+	if( pos < 0 || pos >= p->qtd )
+		return 0;// ERRO_POS_INVALIDA;
+	if( pos == 0 )
+		return remove_inicio( p, info );
 	Elemento *aux = p->cabeca;
-	memcpy( info, aux->info, p->tamInfo );
-	p->cabeca = aux->proximo;
-	free( aux->info );
-	free( aux );
+	int cont;
+	for( cont = 0 ; cont < pos-1 ; cont++ )
+	aux = aux->proximo; // Vai até pos-1
+	Elemento *x = aux->proximo;
+	aux->proximo = x->proximo;
+	memcpy( info, x->info, p->tamInfo );
+	free( x->info );
+	free( x );
 	p->qtd--;
 	return 1; // Sucesso!
 }
 
+
+int le_valor( Lista l, void *info , int pos ){
+	if( lista_vazia( l ) )
+	return ERRO_LISTA_VAZIA;
+	if( pos < 0 || pos >= l.qtd )
+	return 0;// ERRO_POS_INVALIDA;
+	Elemento *aux = l.cabeca;
+	int cont;
+	for( cont = 0 ; cont < pos ; cont++ )
+	aux = aux->proximo; // Vai até elemento em pos
+	memcpy( info, aux->info, l.tamInfo );
+	return 1; // Sucesso!
+}
+
+int modifica_valor( Lista l, void *info , int pos ){
+if( lista_vazia( l ) )
+return ERRO_LISTA_VAZIA;
+if( pos < 0 || pos >= l.qtd )
+return 0;// ERRO_POS_INVALIDA;
+Elemento *aux = l.cabeca;
+int cont;
+for( cont = 0 ; cont < pos ; cont++ )
+aux = aux->proximo; // Vai até elemento em pos
+memcpy( aux->info, info, l.tamInfo );
+return 1; // Sucesso!
+}
 
 // se não precisa mudar o valor dentro da lista não é necessario passar ela por referencia
