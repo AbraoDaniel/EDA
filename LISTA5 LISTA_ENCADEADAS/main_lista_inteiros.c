@@ -26,7 +26,9 @@ int main(int argc, char *argv[]) {
 	
 	
 	// limpa_lista(&l1);
+
 	conta_elementos(l1);
+	
 	//mostra_lista( l1, mostra_int );
 	return 0;
 }

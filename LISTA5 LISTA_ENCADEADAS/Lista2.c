@@ -143,7 +143,7 @@ int remove_fim(Lista *p, void *info){
 		
 
 	Elemento *ultimo = aux->proximo;
-	memcpy(info, ultimo->info, p->tamInfo); // destinoi, origem, num de bites		
+	memcpy(info, ultimo->info, p->tamInfo); // destino, origem, num de bites		
 	free(ultimo->info);
 	free(ultimo);
 
@@ -151,3 +151,48 @@ int remove_fim(Lista *p, void *info){
 	p-> qtd--;
 	return 1; // sucesso
 }
+
+
+int insere( Lista *p, int pos, void *info ){
+	if (pos < 0 || pos > p->qtd){
+		return  1; // ERRO_POS_INVALIDA;
+	}
+	if(pos == 0){
+		return insere_inicio(p, info);
+	}
+
+	Elemento *aux = p->cabeca;
+	
+	for(int i = 1; i < pos; i++ ){ // vai até o final da lista
+		
+		
+	}
+	
+	p->qtd++;
+	Elemento *novo = aloca_elemento( info, p->tamInfo );
+	if( novo == NULL )
+		return 0; // Erro, falta de mem�ria!
+
+	novo->proximo = aux->proximo;
+	novo->proximo = p->cabeca;
+	aux->proximo = novo;
+	p->qtd++;
+	return 1; // Sucesso!
+}
+
+
+int remove( Lista *p, void *info, int pos  ){
+	if( lista_vazia( *p ) )
+		return ERRO_LISTA_VAZIA;
+
+	Elemento *aux = p->cabeca;
+	memcpy( info, aux->info, p->tamInfo );
+	p->cabeca = aux->proximo;
+	free( aux->info );
+	free( aux );
+	p->qtd--;
+	return 1; // Sucesso!
+}
+
+
+// se não precisa mudar o valor dentro da lista não é necessario passar ela por referencia
