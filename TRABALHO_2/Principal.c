@@ -56,7 +56,7 @@ int main()
 
   int vs[n];
   int va[n];
-  for (int i = 0; i < n; i++)
+  for (int i = 1; i <= n; i++)
   {
     vs[i] = 0;
     va[i] = 0;
@@ -72,9 +72,8 @@ int main()
 
   int achou = 0, aux = 0;
   while (!fila_vazia(f) && !achou){
-
     // estou analizando aux
-    remover(&f, &aux);
+    remover(&f, &aux);                 
     if (aux == vertice_final){
       achou = 1;
     }
@@ -83,10 +82,12 @@ int main()
     else{
       for (int j = 1; j <= n; j++){
         if (matriz[aux][j] == 1){
+
           if (vs[j] == 0){
             vs[j] = 1;
             va[j] = aux;
             inserir(&f, j);
+
           }
         }
       }
@@ -108,7 +109,7 @@ int main()
   }
   else
   {
-    printf("B não é alcançável a partir de A!");
+    printf("B não é alcançável a partir de A!\n");
   }
 
   return 0;
