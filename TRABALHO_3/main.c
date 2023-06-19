@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "Conjunto.h"
-#include "Conjunto.c"
 
 // Função principal
 int main() {
