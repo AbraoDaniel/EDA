@@ -185,16 +185,6 @@ void mostra_lista( Lista l, void (*mostra)(void *) ){
 	printf("--------------------------------\n");
 }
 
-int conta_elementos( Lista l ){
-	int cont = 0;
-	Elemento *p = l.cabeca;
-	while( p != NULL ){
-		cont++;
-		p = p->proximo;
-	}
-	return cont;
-}
-
 void limpa_lista( Lista *l ){
 	Elemento *p = l->cabeca;
 	while( p != NULL ){
@@ -207,19 +197,16 @@ void limpa_lista( Lista *l ){
 	l->qtd = 0;
 }
 
-
-int busca(Lista *l, void *info, int (*compara)(void *, void *)) {
-    int cont = 0;
-    Elemento *p = l->cabeca;
+int busca_valor(Lista l, void *info, int (*compara)(void *, void *)) {
+    Elemento *p = l.cabeca;
     while (p!=NULL) {
         if (compara(p->info, info) == 0) {
-            return cont;
+            return 1;
         } else {
-            cont ++;
             p = p->proximo;
         }
     }
-    return -1;
+    return 0;
 }
 
 void concatena(Lista *l, Lista *l2) {

@@ -28,6 +28,4 @@ void mostra_lista( Lista l, void (*mostra)(void *) );
 void limpa_lista( Lista *l );
 int busca(Lista *l, void *info, int (*compara)(void *, void *));
 void concatena(Lista *l, Lista *l2);
-
-int conta_elementos( Lista l ); // Função inútil na prática, pois temos o campo 'qtd'.
-
+int busca_valor(Lista l, void *info, int (*compara)(void *, void *));

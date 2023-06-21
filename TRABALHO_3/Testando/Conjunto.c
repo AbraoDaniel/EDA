@@ -12,12 +12,14 @@ void inicializa_conjunto(Conjuntos *p) {
   inicializa_lista(&p->l, sizeof(Lista));
 }
 
+
 int busca_conjunto(Conjuntos conjunto, int x) {
   Elemento *p = conjunto.l.cabeca;
   int indice = 0;
   while (p != NULL) {
-    if (busca(((Lista *)p->info), &x, comparador_int))
+    if (busca_valor(*((Lista *)p->info), &x, comparador_int)){
       return indice;
+    }
     p = p->proximo;
     indice++;
   }
@@ -53,7 +55,7 @@ Lista *obter_conjunto(Conjuntos *c, int i) {
 }
 
 
-int remove_conjunto_pos(Conjuntos *conjunto, int pos) {
+int remove_conjunto(Conjuntos *conjunto, int pos) {
   Lista temp;
   inicializa_lista(&temp, sizeof(int));
   remove_pos(&conjunto->l, &temp, pos);
@@ -70,26 +72,26 @@ int uniao_conjunto(Conjuntos *p, int x, int y) {
   if (ix == iy)
     return 0; 
 
-  Lista *conjuntoX = obter_conjunto(p, ix);
-  Lista *conjuntoY = obter_conjunto(p, iy);
-  concatena(conjuntoX, conjuntoY);
-  remove_conjunto_pos(p, iy);
+  Lista *primeiro_conj = obter_conjunto(p, ix);
+  Lista *segundo_conj = obter_conjunto(p, iy);
+  concatena(primeiro_conj, segundo_conj);
+  remove_conjunto(p, iy);
   return 1;
 }
 
 void mostrarConjuntos(Conjuntos *u, int n) {
     int i;
     for (i = 0; i < n; i++) {
-        int j, temElemento = 0;
+        int j, elemen = 0;
         for (j = 0; j < n; j++) {
             if (busca_conjunto(*u, j) == i) {
-                temElemento = 1;
+                elemen = 1;
             }
         }
-        if (temElemento) {
+        if (elemen) {
             for (j = 0; j < n; j++) {
                 if (busca_conjunto(*u, j) == i) {
-                    printf("%d ", j);
+                    printf("%d ", j+1);
                 }
             }
         printf("\n");
