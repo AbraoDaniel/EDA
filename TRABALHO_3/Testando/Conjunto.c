@@ -52,6 +52,7 @@ Lista *obter_conjunto(Conjuntos *c, int i) {
     return NULL;
 }
 
+
 int remove_conjunto_pos(Conjuntos *conjunto, int pos) {
   Lista temp;
   inicializa_lista(&temp, sizeof(int));
@@ -62,16 +63,35 @@ int remove_conjunto_pos(Conjuntos *conjunto, int pos) {
 int uniao_conjunto(Conjuntos *p, int x, int y) {
   int ix = busca_conjunto(*p, x);
   int iy = busca_conjunto(*p, y);
+
   if (ix < 0 || iy < 0)
-    return 0; // nao encontrado
+    return 0; 
+
   if (ix == iy)
-    return 0; // l iguais
+    return 0; 
+
   Lista *conjuntoX = obter_conjunto(p, ix);
   Lista *conjuntoY = obter_conjunto(p, iy);
-  concatena(conjuntoX, conjuntoY); // tenho ela salva nos trabalhos, achar e colocar em Lista.h
+  concatena(conjuntoX, conjuntoY);
   remove_conjunto_pos(p, iy);
   return 1;
 }
 
-
-
+void mostrarConjuntos(Conjuntos *u, int n) {
+    int i;
+    for (i = 0; i < n; i++) {
+        int j, temElemento = 0;
+        for (j = 0; j < n; j++) {
+            if (busca_conjunto(*u, j) == i) {
+                temElemento = 1;
+            }
+        }
+        if (temElemento) {
+            for (j = 0; j < n; j++) {
+                if (busca_conjunto(*u, j) == i) {
+                    printf("%d ", j);
+                }
+            }
+        printf("\n");
+    }
+}}

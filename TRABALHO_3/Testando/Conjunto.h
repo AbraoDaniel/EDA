@@ -22,3 +22,5 @@ Lista *obter_conjunto(Conjuntos *c, int i);
 int remove_conjunto_pos(Conjuntos *conjunto, int pos);
 
 int uniao_conjunto(Conjuntos *u, int x, int y);
+
+void mostrarConjuntos(Conjuntos *u, int n); 
