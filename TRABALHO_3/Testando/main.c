@@ -1,15 +1,10 @@
 #include <stdio.h>
 #include "Conjunto.h"
 
-
-// Função para mostrar todos os conjuntos
-
-
 int main() {
     int i, j, n;
-    
-    // Leitura da matriz de adjacência
-    printf("Digite o número de vértices do grafo: ");
+
+    printf("Digite o número de vértices do grafo: "); // Lendo matriz
     scanf("%d", &n);
     
     int adjacencia[n][n];
@@ -24,21 +19,20 @@ int main() {
     Conjuntos u;
     inicializa_conjunto(&u);
 
-    // Criação dos conjuntos iniciais
-    for (i = 0; i < n; i++) {
+    for (i = 0; i < n; i++) { // Cria primeiros conjuntos
         cria_conjunto(&u, i);
     }
 
-    // União dos conjuntos baseado na matriz de adjacência
-    for (i = 0; i < n; i++) {
+    
+    for (i = 0; i < n; i++) { // unindo conjuntos
         for (j = i + 1; j < n; j++) {
             if (adjacencia[i][j] == 1) {
-                uniao_conjunto(&u, i, j);
+                unindo_conjuntos(&u, i, j);
             }
         }
     }
 
-   mostrarConjuntos(&u, n+1);
+    mostrar_conjuntos(&u, n+1);
 
     return 0;
 }
