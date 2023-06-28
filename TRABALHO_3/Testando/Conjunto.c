@@ -1,35 +1,37 @@
-#include "Conjunto.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "Conjunto.h"
 
-int comparador_int(void *a, void *b) {
-  int *ia = (int *)a;
-  int *ib = (int *)b;
-  return *ia - *ib;
-}
 
 void inicializa_conjunto(Conjuntos *p) {
   inicializa_lista(&p->l, sizeof(Lista));
+}
+
+int comparador(void *a, void *b) {
+  int *primeiro_valor = (int *)a;
+  int *segundo_valor = (int *)b;
+  return *primeiro_valor - *segundo_valor;
 }
 
 int busca_conjunto(Conjuntos conjunto, int x) {
   Elemento *p = conjunto.l.cabeca;
   int indice = 0;
   while (p != NULL) {
-    if (busca(((Lista *)p->info), &x, comparador_int))
+    if (busca_valor(*((Lista *)p->info), &x, comparador)){
       return indice;
+    }
     p = p->proximo;
     indice++;
   }
   return -1;
 }
 
-int valor_existente(Conjuntos p, int info) {
+int tem_o_valor(Conjuntos p, int info) {
   return busca_conjunto(p, info) >= 0;
 }
 
 int cria_conjunto(Conjuntos *p, int info) {
-  if (valor_existente(*p, info))
+  if (tem_o_valor(*p, info))
     return 0;
   Lista *novoConjunto = malloc(sizeof(Lista));
   if (novoConjunto == NULL)
@@ -40,38 +42,61 @@ int cria_conjunto(Conjuntos *p, int info) {
   return 1;
 }
 
-Lista *obter_conjunto(Conjuntos *c, int i) {
+Lista *retorna_conjunto(Conjuntos *c, int i) {
 	Elemento *p = c->l.cabeca;
 	int count = 0;
     while(p != NULL) {
-        if(count == i)
+        if(count == i) {
           return (Lista *)p->info;
-        p = p-> proximo;
-        count++;
+        } else {
+          p = p-> proximo;
+          count++;
+        }
     }
     return NULL;
 }
 
-int remove_conjunto_pos(Conjuntos *conjunto, int pos) {
-  Lista temp;
-  inicializa_lista(&temp, sizeof(int));
-  remove_pos(&conjunto->l, &temp, pos);
+int remove_conjunto(Conjuntos *conjunto, int pos) {
+  Lista list;
+  inicializa_lista(&list, sizeof(int));
+  remove_pos(&conjunto->l, &list, pos);
   return 1;
 }
 
-int uniao_conjunto(Conjuntos *p, int x, int y) {
-  int ix = busca_conjunto(*p, x);
-  int iy = busca_conjunto(*p, y);
-  if (ix < 0 || iy < 0)
-    return 0; // nao encontrado
-  if (ix == iy)
-    return 0; // l iguais
-  Lista *conjuntoX = obter_conjunto(p, ix);
-  Lista *conjuntoY = obter_conjunto(p, iy);
-  concatena(conjuntoX, conjuntoY); // tenho ela salva nos trabalhos, achar e colocar em Lista.h
-  remove_conjunto_pos(p, iy);
+int unindo_conjuntos(Conjuntos *p, int x, int y) {
+  int primeira_busca = busca_conjunto(*p, x);
+  int segunda_busca = busca_conjunto(*p, y);
+
+  if (primeira_busca < 0 || segunda_busca < 0) {
+    return 0; 
+  }
+
+  if (primeira_busca == segunda_busca) {
+    return 0; 
+  }
+
+  Lista *primeiro_conj = retorna_conjunto(p, primeira_busca);
+  Lista *segundo_conj = retorna_conjunto(p, segunda_busca);
+  concatena(primeiro_conj, segundo_conj);
+  remove_conjunto(p, segunda_busca);
   return 1;
 }
 
-
-
+void mostrar_conjuntos(Conjuntos *u, int n) {
+    int i;
+    for (i = 0; i < n; i++) {
+        int j, elemen = 0;
+        for (j = 0; j < n; j++) {
+            if (busca_conjunto(*u, j) == i) {
+                elemen = 1;
+            }
+        }
+        if (elemen) {
+            for (j = 0; j < n; j++) {
+                if (busca_conjunto(*u, j) == i) {
+                    printf("%d ", j+1);
+                }
+            }
+        printf("\n");
+    }
+}}
