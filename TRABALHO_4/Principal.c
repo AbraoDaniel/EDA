@@ -7,15 +7,6 @@ Fila f;
 
 int main()
 {
-  FILE *arquivo;
-
-  arquivo = fopen("arquivo.txt", "r");
-  if (arquivo == NULL)
-  {
-    printf("Erro ao abrir o arquivo");
-    return 1;
-  }
-
   // DEFININDO TAMANHO DA MATRIZ E ALOCANDO OS VALORES
 
   int n;
@@ -23,24 +14,12 @@ int main()
   scanf("%d", &n);
 
   int matriz[n + 1][n + 1];
-
-  for (int i = 1; i <= n; i++)
-  {
-    for (int j = 1; j <= n; j++)
-    {
-      fscanf(arquivo, "%d", &matriz[i][j]);
+  printf("\nDigite a matriz:\n");
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= n; j++) {
+            scanf("%d", &matriz[i][j]);
+        }
     }
-  }
-
-  for (int i = 1; i <= n; i++)
-  {
-    for (int j = 1; j <= n; j++)
-    {
-      int valor;
-      printf("%4d", matriz[i][j]);
-    }
-    printf("\n");
-  }
 
   // INFORMANDO VERTICE INICIAL
 
