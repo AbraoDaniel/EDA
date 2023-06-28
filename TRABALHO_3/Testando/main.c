@@ -1,37 +1,16 @@
 #include <stdio.h>
 #include "Conjunto.h"
 
-#define MAX_VERTICES 100
-
-void mostra_conjuntos(Conjuntos u) {
-    Elemento *p = u.l.cabeca;
-    int indice = 0;
-    while (p != NULL) {
-        Lista *conjunto = (Lista *)p->info;
-        Elemento *q = conjunto->cabeca;
-        printf("Conjunto %d: ", indice);
-        while (q != NULL) {
-            int *valor = (int *)q->info;
-            printf("%d ", *valor);
-            q = q->proximo;
-        }
-        printf("\n");
-        p = p->proximo;
-        indice++;
-    }
-}
-
 int main() {
     int i, j, n;
-    
-    // Leitura da matriz de adjacência
-    printf("Digite o número de vértices do grafo: ");
+
+    printf("Digite o número de vértices do grafo: "); // Lendo matriz
     scanf("%d", &n);
-   
-    int adjacencia[MAX_VERTICES + 1][MAX_VERTICES + 1];
+    
+    int adjacencia[n][n];
     printf("Digite a matriz de adjacência do grafo:\n");
-    for (i = 1; i <= n; i++) {
-        for (j = 1; j <= n; j++) {
+    for (i = 0; i < n; i++) {
+        for (j = 0; j < n; j++) {
             scanf("%d", &adjacencia[i][j]);
         }
     }
@@ -40,21 +19,20 @@ int main() {
     Conjuntos u;
     inicializa_conjunto(&u);
 
-    // Criação dos conjuntos iniciais
-    for (i = 1; i <= n; i++) {
+    for (i = 0; i < n; i++) { // Cria primeiros conjuntos
         cria_conjunto(&u, i);
     }
 
-    // União dos conjuntos baseado na matriz de adjacência
-    for (i = 1; i <= n; i++) {
-        for (j = i + 1; j <= n; j++) {
+    
+    for (i = 0; i < n; i++) { // unindo conjuntos
+        for (j = i + 1; j < n; j++) {
             if (adjacencia[i][j] == 1) {
-                uniao_conjunto(&u, i, j);
+                unindo_conjuntos(&u, i, j);
             }
         }
     }
 
-    mostra_conjuntos(u);
+    mostrar_conjuntos(&u, n+1);
 
     return 0;
 }
