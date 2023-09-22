@@ -25,7 +25,7 @@ int compara(const void* a, const void* b) {
 }
 
 int main() {
-    int n = 5;
+    int n = 1000;
     int v[n];
     srand(time(0));
     int pesquisa = rand() % 100;
